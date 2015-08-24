@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Add Markers</title> 
+    <style type="text/css">
+      html, body { height: 100%; margin: 0; padding: 0; }
+      #map { height: 100%; }
+    </style>
+  </head>
+  <body>
+<form id="location">
+Latitude: <input type="text" name="Lat">
+Lognitude: <input type="text" name="Lgn">
+</form>
+<button onclick="addMarker()">Add Marker</button>
+
+<p id="result"></p>
+
+<div id="map"></div>
+<script type="text/javascript">
+
+var map;
+function initMap() {
+  var myLatLng = {lat: 37.423021, lng: -122.083739};
+
+  map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 15,
+    center: myLatLng
+  });
+
+  var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    animation: google.maps.Animation.DROP
+  });
+}
+
+function addMarker() {
+    var location = document.getElementById("location");
+    var locationLatLng = new google.maps.LatLng(location.elements[0].value,location.elements[1].value);
+
+    var marker = new google.maps.Marker({
+    position: locationLatLng,
+    map: map,
+    animation: google.maps.Animation.DROP
+    });
+}
+</script>
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?&callback=initMap">
+    </script>
+  </body>
+</html>
